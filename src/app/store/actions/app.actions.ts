@@ -8,17 +8,17 @@ export enum ActionTypes {
 
 export class GetGenericDataLoading implements Action {
   readonly type = ActionTypes.GET_GENERIC_DATA_LOADING;
-  constructor() {}
+  constructor(public payload: any) {}
 }
 
 export class GetGenericDataSuccess implements Action {
   readonly type = ActionTypes.GET_GENERIC_DATA_SUCCESS;
-  constructor(public payload: {}) {}
+  constructor(public payload: any) {}
 }
 
 export class GetGenericDataFailure implements Action {
   readonly type = ActionTypes.GET_GENERIC_DATA_FAILURE;
-  constructor(public payload: {}) {}
+  constructor(public payload: any) {}
 }
 
 export type All = 

@@ -1,1 +1,21 @@
-<h1>UWU</h1>
+<h1>API CALL TEST</h1>
+
+<button (click)="getData()">data</button>
+<button (click)="getError()">error</button>
+
+<div *ngIf="!data[0].name; else withData">
+  <h2 style="color: blue">DATA:</h2>
+  <h3 style="color: rgb(19, 19, 19)">{{data[0]}}</h3>
+</div>
+<ng-template #withData>
+  <h2>DATA: </h2>
+  <div *ngFor="let item of data">
+    <h3 style="color: rgb(19, 19, 19)">{{item.name.title + item.name.first + item.name.last}}</h3>
+  </div>
+</ng-template>
+
+<h2 style="color: red">ERRORS:</h2>
+<h3 style="color: rgb(19, 19, 19)">{{errors}}</h3>
+
+
+
