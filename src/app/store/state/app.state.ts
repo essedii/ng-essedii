@@ -4,6 +4,6 @@ export interface IAppState {
 }
 
 export const initialAppState: IAppState = {
-  data: ['Empty'],
-  errors: ['No Errors']
+  data: null,
+  errors: null
 }

@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+}
+
+.error {
+  color: red
+}
+
+mat-paginator-container {
+  background-color: green;
+  justify-content: center !important;
+}
+
+mat-paginator {
+  display: flex;
+  justify-content: center;
+}

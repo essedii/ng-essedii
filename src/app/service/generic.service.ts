@@ -11,46 +11,19 @@ export class GenericService {
   
   constructor(private http: HttpClient) { }
   
-  getGenericData(type: TestTypes): Observable<any> {
+  getGenericData(page: number, results: number): Observable<any> {
     let payload: any;
-    switch (type) {
-      case TestTypes.REGULAR:
-        const URL = 'https://randomuser.me/api/?results=10';
-        return this.http.get<any>(URL).pipe(
-          map((response) => {
-            payload = response.results;
-            return payload;
-          }),
-          catchError((err: HttpErrorResponse) => {
-            return of(err);
-          })
-        );
-        case TestTypes.ERROR:
-          const ERROR_URL = 'https://rdaandomuser.me/api/?results=10';
-          return this.http.get<any>(ERROR_URL).pipe(
-            map((response) => {
-              payload = response.results;
-              return payload;
-            }),
-            catchError((err: HttpErrorResponse) => {
-              return of(err);
-            })
-          );
-    }
+    // QUESTA API MANDA SIA CON INDICE 0 ED 1 LA STESSA PAGINA, QUINDI IL COMPONENTE HA INDICE CHE PARTE DA 0
+    // E QUI AGGIUNGENDO 1 SI RISOLVE IL PROBLEMA
+    const URL = `https://randomuser.me/api/?page=${page+1}&results=${results}&seed=abc`;
+    return this.http.get<any>(URL).pipe(
+      map((response) => {
+        payload = response.results;
+        return payload;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        return of(err);
+      })
+    );
   }
-  
-  // getError(): Observable<any> {
-  //   let payload: any;
-  //   const URL = 'https://rdaandomuser.me/api/?results=10';
-  //    return this.http.get<any>(URL).pipe(
-  //     map((response) => {
-  //       payload = response.results;
-  //       return payload;
-  //     }),
-  //     catchError((err: HttpErrorResponse) => {
-  //       return of(err);
-  //     })
-  //   );
-  // }
-  
 }

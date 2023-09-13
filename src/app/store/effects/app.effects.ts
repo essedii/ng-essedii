@@ -10,7 +10,7 @@ export class AppEffects {
     this.actions$.pipe(
       ofType(fromAppActions.ActionTypes.GET_GENERIC_DATA_LOADING),
       map((action: any) => action.payload),
-      switchMap((type) => this.service.getGenericData(type)
+      switchMap((params) => this.service.getGenericData(params.page, params.results)
         .pipe(
           map((response) => {
             if (!response.error) {

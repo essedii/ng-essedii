@@ -10,12 +10,12 @@ export function appReducer(state = initialAppState, action: All ): IAppState {
       return {
         ...state, 
         data: action.payload,
-        errors :['No Errors']
+        errors :null
       };
       case ActionTypes.GET_GENERIC_DATA_FAILURE:
       return {
         ...state, 
-        data: ['Empty'],
+        data: null,
         errors: action.payload.message
       };
       default: {

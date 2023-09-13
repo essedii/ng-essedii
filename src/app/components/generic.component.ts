@@ -4,43 +4,62 @@ import { IAppState } from '../store/state/app.state';
 import * as fromAppActions from '../store/actions/app.actions';
 import { TestTypes } from '../utils/generic';
 import { appStateData, appStateError } from '../store/selectors/app.selector';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator/paginator';
 
 @Component({
   selector: 'app-generic',
-  templateUrl: './generic.component.html'
+  templateUrl: './generic.component.html',
+  styleUrls: ['./generic.component.scss']
 })
 
 export class GenericComponent implements OnInit, OnDestroy {
   
   errors: any;
-  data: any;
+  data$?: Observable<any>;
+  errors$?: Observable<any>;
+  hidePageSize: boolean = false;
+  showPageSizeOptions: boolean = true;
+  showFirstLastButtons: boolean = true;
+  disabled: boolean = false;
+  page: number = 0;
+  pageSize: number = 5;
+  pageSizeOptions: Array<number> = [5, 10, 25];
   
   private destroy$ = new Subject();
   
-  constructor(
-    private store: Store<IAppState>
-    ) { 
-      
-    }
+  displayedColumns: string[] = ['name', 'email', 'phone', 'city'];
+  length : number = 50;
+  pageEvent?: PageEvent;
+  pageIndex: number = 0;
+  
+  constructor( private store: Store<IAppState>) { 
+    this.getData();
+    this.store.select(appStateError).pipe(takeUntil(this.destroy$))
+  }
     
   ngOnInit() {
-    this.store.select(appStateData).pipe(takeUntil(this.destroy$)).subscribe(data=> {
-      this.data = data;
-    });
-    this.store.select(appStateError).pipe(takeUntil(this.destroy$)).subscribe(errors=> {
-      this.errors = errors;
-    }) 
+    this.data$ = this.store.select(appStateData).pipe(takeUntil(this.destroy$))
+    this.errors$ = this.store.select(appStateError).pipe(takeUntil(this.destroy$))
   }
   
   getData() {
-    this.store.dispatch(new fromAppActions.GetGenericDataLoading(TestTypes.REGULAR))
-    
+    this.store.dispatch(new fromAppActions.GetGenericDataLoading({page: this.pageIndex, results: this.pageSize}))
   }
   
-  getError() {
-    this.store.dispatch(new fromAppActions.GetGenericDataLoading(TestTypes.ERROR))    
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+    this.getData();
   }
+  
+  onRefresh() {
+    this.getData();
+  }
+  
+  
   
   ngOnDestroy() {
     this.destroy$.next(null);

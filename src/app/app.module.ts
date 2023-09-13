@@ -15,6 +15,10 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { AppEffects } from './store/effects/app.effects';
 import { appReducer } from './store/reducers/app.reducer';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { appReducer } from './store/reducers/app.reducer';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
     }),
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule
+    
   ],
   providers: [GenericService],
   bootstrap: [AppComponent]
