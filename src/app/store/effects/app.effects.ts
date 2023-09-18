@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { GenericService } from 'src/app/service/generic.service';
+import { UserService } from 'src/app/views/user/service/user.service';
+// import { GenericService } from 'src/app/views/user/service/user.service';
 import * as fromAppActions from '../actions/app.actions';
 import { catchError, exhaustMap, map, switchMap, } from 'rxjs/operators';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
@@ -26,7 +27,7 @@ export class AppEffects {
   
   
   constructor(
-    private service: GenericService,
+    private service: UserService,
     private actions$: Actions
   ) {}
 }

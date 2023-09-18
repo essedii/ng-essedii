@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
-import { TestTypes } from '../utils/generic';
+import { UserModule } from '../user.module';
 
 
 @Injectable({providedIn: 'root'})
-export class GenericService {
+export class UserService {
   
   baseUrl = "/api/users/random_user";
   

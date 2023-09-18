@@ -1,19 +1,24 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { IAppState } from '../store/state/app.state';
-import * as fromAppActions from '../store/actions/app.actions';
-import { TestTypes } from '../utils/generic';
-import { appStateData, appStateError } from '../store/selectors/app.selector';
+import { IAppState } from '../../../../store/state/app.state';
+import * as fromAppActions from '../../../../store/actions/app.actions';
+import { appStateData, appStateError } from '../../../../store/selectors/app.selector';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator/paginator';
 
+import { Input } from '@angular/core';
+
 @Component({
-  selector: 'app-generic',
-  templateUrl: './generic.component.html',
-  styleUrls: ['./generic.component.scss']
+  selector: 'app-grid',
+  templateUrl: './grid.component.html',
+  styleUrls: ['./grid.component.scss']
 })
 
-export class GenericComponent implements OnInit, OnDestroy {
+export class GridComponent implements OnInit, OnDestroy {
+  
+  @Input() Headers?: Array<string>
+  @Input() Values?: Array<string>
+  data: any;
   
   errors: any;
   data$?: Observable<any>;
@@ -35,7 +40,9 @@ export class GenericComponent implements OnInit, OnDestroy {
   
   constructor( private store: Store<IAppState>) { 
     this.getData();
-    this.store.select(appStateError).pipe(takeUntil(this.destroy$))
+    this.store.select(appStateError).pipe(takeUntil(this.destroy$));
+    
+    // this.data == this.Headers?.length;
   }
     
   ngOnInit() {
