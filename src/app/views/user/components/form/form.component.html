@@ -1,5 +1,21 @@
-<div class="container">
-  <div class="control-container">
+<div *ngIf="type === 0" class="container">
+  <form [formGroup]="chosenLevel" (ngSubmit)="onStart()">
+    <div class="control-container">
+      <mat-form-field>
+        <mat-label>Level</mat-label>
+        <mat-select disableOptionCentering>
+          <mat-option value="one">Easy</mat-option>
+          <mat-option value="two">Medium</mat-option>
+          <mat-option value="two">Hard</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="start-button-container">
+      <button mat-raised-button color="warn" class="button" type="submit">READY</button>
+    </div>
+  </form>
+
+  <!-- <div class="control-container">
     <mat-form-field>
       <mat-label>Input</mat-label>
       <input matInput>
@@ -19,6 +35,8 @@
       <mat-label>Textarea</mat-label>
       <textarea matInput></textarea>
     </mat-form-field>
-  </div>
+  </div> -->
 </div>
+
+<ng-template #gameForm></ng-template>
 

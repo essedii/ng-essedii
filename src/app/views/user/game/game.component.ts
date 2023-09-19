@@ -8,12 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class GameComponent implements OnInit {
+  
+  submitted: boolean = false;
+  level: number = 0;
+  
   constructor(private location: Location) { }
 
   ngOnInit() { }
   
   back(){
     this.location.back();
+  }
+  
+  formListener(evt: string) {
+    console.log(evt)
   }
   
 }

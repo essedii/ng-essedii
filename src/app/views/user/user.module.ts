@@ -7,11 +7,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/app/material/material.module';
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  imports: [ UserRoutingModule, SharedModule, MaterialModule],
+  imports: [ UserRoutingModule, SharedModule, MaterialModule, ReactiveFormsModule, FormsModule],
   exports: [],
   declarations: [UserComponent, FormComponent, GridComponent, ListComponent, GameComponent],
   providers: [],

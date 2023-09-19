@@ -2,7 +2,15 @@
   <div class="button-container">
     <button mat-raised-button color="primary" class="button" (click)="back()">Back</button>
   </div>
-  <div class="form-container">
-    <app-form></app-form>
+  
+  <div *ngIf="!submitted; else gameForm" class="form-container">
+    <app-form [type]="0" (startGame)="formListener($event)"></app-form>
   </div>
+  
+  <ng-template  #gameForm >
+    <div class="form-container" >
+      <app-form [type]="1" [level]="level"></app-form>
+    </div>
+  </ng-template>
+
 </div>
