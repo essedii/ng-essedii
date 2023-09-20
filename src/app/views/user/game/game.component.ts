@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-game',
@@ -10,9 +11,11 @@ import { Component, OnInit } from '@angular/core';
 export class GameComponent implements OnInit {
   
   submitted: boolean = false;
-  level: number = 0;
+  user: any;
+  gameStarted: boolean = false;
+  level: string = '';
   
-  constructor(private location: Location) { }
+  constructor(private location: Location, private service: UserService) { }
 
   ngOnInit() { }
   
@@ -20,8 +23,22 @@ export class GameComponent implements OnInit {
     this.location.back();
   }
   
-  formListener(evt: string) {
+  formListener(evt: any) {
     console.log(evt)
+    if (evt === 'reset') {
+      this.user = null;
+    } else {
+      this.level = evt.level;
+      this.service.getRandomUser(this.level).subscribe(
+        (data) => {
+        this.user = data;
+        this.gameStarted = true;
+        },
+        (err) => console.log(err),
+        () => console.log('complete')
+      )
+    }
+  
   }
   
 }

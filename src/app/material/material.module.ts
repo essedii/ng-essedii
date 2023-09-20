@@ -6,11 +6,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+
 
 
 @NgModule({
   imports: [],
-  exports: [MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatOptionModule, MatSelectModule],
+  exports: [
+    MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, 
+    MatButtonModule, MatOptionModule, MatSelectModule, MatCardModule
+  ],
   declarations: [],
   providers: [],
 })

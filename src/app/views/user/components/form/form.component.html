@@ -1,42 +1,26 @@
-<div *ngIf="type === 0" class="container">
+<div class="container">
   <form [formGroup]="chosenLevel" (ngSubmit)="onStart()">
     <div class="control-container">
       <mat-form-field>
         <mat-label>Level</mat-label>
-        <mat-select disableOptionCentering>
-          <mat-option value="one">Easy</mat-option>
-          <mat-option value="two">Medium</mat-option>
-          <mat-option value="two">Hard</mat-option>
+        <mat-select disableOptionCentering formControlName="level">
+          <mat-option value="1">Easy</mat-option>
+          <mat-option value="2">Medium</mat-option>
+          <mat-option value="3">Hard</mat-option>
         </mat-select>
+        <mat-error *ngIf="submitted && f['level'].errors?.['required']">
+          You must select before start
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="start-button-container">
-      <button mat-raised-button color="warn" class="button" type="submit">READY</button>
+      <button [disabled]="started" mat-raised-button color="primary" class="button" type="submit">R E A D Y</button>
+      <button (click)="onReset()" mat-raised-button color="warn" class="button" type="submit">R E S E T</button>
     </div>
   </form>
-
-  <!-- <div class="control-container">
-    <mat-form-field>
-      <mat-label>Input</mat-label>
-      <input matInput>
-    </mat-form-field>
-  </div>
-  <div class="control-container">
-    <mat-form-field>
-      <mat-label>Select</mat-label>
-      <mat-select>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="control-container">
-    <mat-form-field>
-      <mat-label>Textarea</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field>
-  </div> -->
 </div>
+
+<button (click)="test()">check</button>
 
 <ng-template #gameForm></ng-template>
 

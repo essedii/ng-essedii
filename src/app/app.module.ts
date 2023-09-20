@@ -24,12 +24,6 @@ import { environment } from 'src/environments/environment';
         maxAge: 25, // Retains last 25 states
         logOnly: environment.production // Restrict extension to log-only mode
       })
-    // BrowserModule, AppRoutingModule,  HttpClientModule, CommonModule, BrowserAnimationsModule,
-    // StoreModule.forRoot({}), StoreModule.forFeature('appState', appReducer), 
-    // EffectsModule.forRoot([AppEffects]), StoreDevtoolsModule.instrument({
-    //   maxAge: 25, // Retains last 25 states
-    //   logOnly: environment.production // Restrict extension to log-only mode
-    // }),
   ],
   providers: [],
   bootstrap: [AppComponent]
