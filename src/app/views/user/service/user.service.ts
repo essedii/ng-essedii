@@ -44,7 +44,7 @@ export class UserService {
       break
     }
     
-    const URL = `${this.baseUrl}?nat=gb,us?inc=${param}`;
+    const URL = `${this.baseUrl}?nat=gb,us&inc=${param}`;
     return this.http.get<any>(URL).pipe(
       map((response) => {
         payload = response.results[0];

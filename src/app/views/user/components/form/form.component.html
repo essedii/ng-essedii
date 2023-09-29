@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container" *ngIf="type === 0; else answerForm">
+  <h1> CHOSE A LEVEL</h1>
   <form [formGroup]="chosenLevel" (ngSubmit)="onStart()">
     <div class="control-container">
       <mat-form-field>
@@ -20,7 +21,39 @@
   </form>
 </div>
 
-<button (click)="test()">check</button>
+<ng-template #answerForm>
+  <h1> GUESS THE USER?</h1>
+  <div class="container">
+    <form [formGroup]="userForm" (ngSubmit)="onFinish()">
+      <div class="control-container">
+        <mat-form-field>
+          <mat-label>Gender</mat-label>
+          <mat-select disableOptionCentering placeholder="Gender" formControlName="gender">
+            <mat-option value="1">Male</mat-option>
+            <mat-option value="2">Female</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="control-container">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="control-container">
+        <mat-form-field>
+          <mat-label>Age</mat-label>
+          <input matInput placeholder="age" formControlName="age">
+        </mat-form-field>
+      </div>
+      <div class="start-button-container">
+        <button mat-raised-button color="primary" class="button" type="submit">S U B M I T</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+
 
 <ng-template #gameForm></ng-template>
 

@@ -12,6 +12,7 @@ export class FormComponent implements OnInit, OnChanges {
   @Input() type?: number;
   @Input() iUser?: Object;
   @Output() startGame = new EventEmitter<string>();
+  @Output() finishGame = new EventEmitter<string>();
   @Output() resetGame = new EventEmitter<string>();
   
   user: any
@@ -22,8 +23,7 @@ export class FormComponent implements OnInit, OnChanges {
   
   userForm: FormGroup = this.fb.group({
     gender: [null],
-    firstName: [null],
-    lastName: [null],
+    name: [null],
     age: [null]
   });
   
@@ -35,17 +35,17 @@ export class FormComponent implements OnInit, OnChanges {
   constructor(  private fb: FormBuilder) { }
 
   ngOnInit() {
-    if (this.iUser) {
-      this.userForm.patchValue(this.userForm);
-    }
-    console.log(this.iUser);
+    // if (this.iUser) {
+    //   this.userForm.patchValue(this.userForm);
+    // }
+    // console.log(this.iUser);
   }
   
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
-    if (changes) {
-       this.user = changes['iUser'];
-    }
+    // console.log(changes)
+    // if (changes) {
+    //    this.user = changes['iUser'];
+    // }
   }
   
   test() {
@@ -64,9 +64,14 @@ export class FormComponent implements OnInit, OnChanges {
       this.started = true;
       this.chosenLevel.disable();
     }
-   
   }
   
+  onFinish() {
+    this.submitted === true;
+    this.finishGame.emit(this.userForm?.value);
+    this.started = true;
+  }
+   
   onReset() {
     this.submitted = false;
     this.started = false;

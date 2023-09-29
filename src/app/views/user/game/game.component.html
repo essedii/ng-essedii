@@ -2,32 +2,60 @@
   <div class="button-container">
     <button mat-raised-button color="primary" class="button" (click)="back()">Back</button>
   </div>
-  
+  <!-- LEVEL // GUESS -->
   <div class="form-container">
-    <app-form [type]="0" (startGame)="formListener($event)" (resetGame)="formListener($event)"  [iUser]="user"></app-form>
+    <app-form [type]="type" (startGame)="gameManager($event)" (finishGame)="checkAnswer($event)" (resetGame)="gameManager($event)"  [iUser]="user"></app-form>
   </div>
 </div>
 
 
-
-<div *ngIf="user">
-  <!-- <img [src]="user.picture?.large">
-  <p *ngIf="level === '1' || level === '2' || level === '3'">{{user.gender}}</p>
-  <p *ngIf="level === '2' || level === '3'">{{user.name?.first + ' ' + user.name?.last}}</p>
-  <p *ngIf="level === '3'">{{user.dob?.age}}</p> -->
-  
-  
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title-group>
-        <mat-card-title *ngIf="level === '2' || level === '3'">{{user.name?.first + ' ' + user.name?.last}}</mat-card-title>
-        <mat-card-subtitle *ngIf="level === '1' || level === '2' || level === '3'">{{user.gender}}</mat-card-subtitle>
-        <img mat-card-md-image [src]="user.picture?.large">
-      </mat-card-title-group>
-    </mat-card-header>
-    <mat-card-content>
-      HI!!! I'm {{user.dob?.age}} Y.O.
-    </mat-card-content>
-  </mat-card>
-  
+<div *ngIf="type == 0">
+  <!-- USER INFO-->
+  <div *ngIf="user && gameStarted" class="user-container">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title *ngIf="level === '2' || level === '3'">{{user?.name?.first + ' ' + user?.name?.last}}</mat-card-title>
+          <mat-card-subtitle *ngIf="level === '1' || level === '2' || level === '3'">{{user?.gender | titlecase}}</mat-card-subtitle>
+          <img mat-card-md-image [src]="user?.picture?.large">
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        <p *ngIf="level === '3'">Hi, my name is {{user?.name?.first + ' ' + user?.name?.last}} and I'm {{user?.dob?.age}} years old.</p>
+      </mat-card-content>
+    </mat-card> 
+  </div>
+  <!-- TIMER -->
+  <div *ngIf="gameStarted">
+    <h1 *ngIf="gameStarted; else timer2">
+      TIMER 2 : {{(timer$ | async)}}
+    </h1>
+    <ng-template #timer2>
+      <h1>
+        TIMER 3 : 0
+      </h1>
+    </ng-template>
+  </div>
 </div>
+
+
+<mat-card class="d">
+  <mat-card-content>
+    <h2 class="a">Result</h2>
+
+    <section class="b">
+      <mat-progress-bar
+          class="c"
+          [color]="color"
+          [mode]="mode"
+          [value]="(value$ | async) || 0">
+      </mat-progress-bar>
+    </section>
+  </mat-card-content>
+</mat-card>
+
+<h1>GAMESTARTED - {{gameStarted}}</h1>
+<h1>type - {{type}}</h1>
+<h1>destroy$ {{destroy$}}</h1>
+
+
