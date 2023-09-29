@@ -15,4 +15,4 @@ This app is made in angular and contains the following libraries:
 -RxJs
 
 ## goal
-My goal is to implement and grow the app with each time with more libraries and components to test and improve my personal skils and knowledge
+My goal is to implement and grow the app each time with more and more libraries and components to test and improve my personal skils and knowledge
