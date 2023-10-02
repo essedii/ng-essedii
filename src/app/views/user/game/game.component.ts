@@ -48,7 +48,7 @@ export class GameComponent implements OnInit {
     last: '',
   }
   
-  
+  guessing: boolean = false;
   esito: string | null = null;
   
   constructor(private location: Location, private service: UserService) { 
@@ -64,6 +64,7 @@ export class GameComponent implements OnInit {
   resetGame() {
     this.esito = null;
     this.user =  null;
+    this.gameStarted = false;
     this.destroy$.complete();
     this.resetSettings();
   }
@@ -71,7 +72,7 @@ export class GameComponent implements OnInit {
   manageTime(data: any) {
     this.missingTime -= 1;
     this.timer$.next(this.missingTime);
-    this.value$.next(this.missingTime*20)
+    this.value$.next(this.missingTime*20);
     this.gameStarted = true;
   }
   
@@ -83,7 +84,8 @@ export class GameComponent implements OnInit {
   
   completeFase1(){
     this.fase1End = true;
-    this.type = 1
+    this.guessing = false;
+    this.type = 1;
   }
 
   manageError(err: HttpErrorResponse) {
@@ -95,8 +97,8 @@ export class GameComponent implements OnInit {
     console.log(evt);
     let x = JSON.stringify(this.userToCheck);
     let y =  JSON.stringify(evt);
-    x == y? console.log('Winning') : console.log('Lost')
-    x == y? this.esito = 'won' : this.esito = 'lost'
+    x == y? console.log('Winning') : console.log('Lost');
+    x == y? this.esito = 'won' : this.esito = 'lost';
   }
   
   gameManager(evt: any) {
@@ -128,6 +130,7 @@ export class GameComponent implements OnInit {
   }
   
   generateUserToCheck(userDto: any) {
+    this.guessing = true;
     this.user = userDto;
     
     this.userToCheck.gender = userDto.gender

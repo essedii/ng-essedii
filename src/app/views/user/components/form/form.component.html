@@ -5,8 +5,8 @@
       <mat-form-field>
         <mat-label>Level</mat-label>
         <mat-select disableOptionCentering formControlName="level">
-          <mat-option value="1">Easy</mat-option>
-          <mat-option value="2">Medium</mat-option>
+          <mat-option [disabled]="true" value="1">Easy</mat-option>
+          <mat-option [disabled]="true" value="2">Medium</mat-option>
           <mat-option value="3">Hard</mat-option>
         </mat-select>
         <mat-error *ngIf="submitted && f['level'].errors?.['required']">

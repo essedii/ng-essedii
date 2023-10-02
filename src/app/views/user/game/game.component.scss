@@ -73,3 +73,25 @@
 .d {
   margin-bottom: 10px;
 }
+
+.content-header {
+  display: flex;
+  justify-content: start;
+  align-content: start;
+}
+
+.name {
+  margin-left: 1rem;
+}
+
+.content-body {
+  margin-top: 1rem;
+}
+
+.won {
+  color: green;
+}
+
+.lost {
+  color: red;
+}
