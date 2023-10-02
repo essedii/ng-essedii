@@ -7,6 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 
+
 @Component({
   selector: 'app-game',
   templateUrl: 'game.component.html',
@@ -40,6 +41,15 @@ export class GameComponent implements OnInit {
   value = 10;
   value$ = new BehaviorSubject(0);
   
+  userToCheck = {
+    gender: '',
+    age: '',
+    first: '',
+    last: '',
+  }
+  
+  
+  esito: string | null = null;
   
   constructor(private location: Location, private service: UserService) { 
   }
@@ -51,12 +61,13 @@ export class GameComponent implements OnInit {
     this.location.back();
   }
   
-
-
-  assignUser(data: any) {
-    this.user = data;
+  resetGame() {
+    this.esito = null;
+    this.user =  null;
+    this.destroy$.complete();
+    this.resetSettings();
   }
-  
+
   manageTime(data: any) {
     this.missingTime -= 1;
     this.timer$.next(this.missingTime);
@@ -80,17 +91,23 @@ export class GameComponent implements OnInit {
   }
   
   checkAnswer(evt: any) {
-    console.log(evt)
+    console.log(this.userToCheck);
+    console.log(evt);
+    let x = JSON.stringify(this.userToCheck);
+    let y =  JSON.stringify(evt);
+    x == y? console.log('Winning') : console.log('Lost')
+    x == y? this.esito = 'won' : this.esito = 'lost'
   }
   
   gameManager(evt: any) {
+    this.fase1End = false
     if (evt === 'reset') {
       this.destroy$.complete();
       this.resetSettings();
     } else {
       this.level = evt.level;
       this.service.getRandomUser(this.level).subscribe({
-        next: (data) => this.assignUser(data),
+        next: (data) => this.generateUserToCheck(data),
         error: (err) => this.manageError(err),
         complete: () =>  this.timeStart()
       })
@@ -108,5 +125,14 @@ export class GameComponent implements OnInit {
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.complete();
+  }
+  
+  generateUserToCheck(userDto: any) {
+    this.user = userDto;
+    
+    this.userToCheck.gender = userDto.gender
+    this.userToCheck.age = userDto.dob.age
+    this.userToCheck.first = userDto.name.first
+    this.userToCheck.last = userDto.name.last
   }
 }

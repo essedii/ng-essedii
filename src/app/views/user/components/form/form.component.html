@@ -22,28 +22,34 @@
 </div>
 
 <ng-template #answerForm>
-  <h1> GUESS THE USER?</h1>
+  <h1> GUESS THE USER</h1>
   <div class="container">
     <form [formGroup]="userForm" (ngSubmit)="onFinish()">
       <div class="control-container">
         <mat-form-field>
           <mat-label>Gender</mat-label>
           <mat-select disableOptionCentering placeholder="Gender" formControlName="gender">
-            <mat-option value="1">Male</mat-option>
-            <mat-option value="2">Female</mat-option>
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div class="control-container">
         <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Name" formControlName="name">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="First Name" formControlName="first">
+        </mat-form-field>
+      </div>
+      <div class="control-container">
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput placeholder="Last Name" formControlName="last">
         </mat-form-field>
       </div>
       <div class="control-container">
         <mat-form-field>
           <mat-label>Age</mat-label>
-          <input matInput placeholder="age" formControlName="age">
+          <input matInput type="number" placeholder="age" formControlName="age">
         </mat-form-field>
       </div>
       <div class="start-button-container">

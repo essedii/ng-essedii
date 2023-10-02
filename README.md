@@ -16,3 +16,9 @@ This app is made in angular and contains the following libraries:
 
 ## goal
 My goal is to implement and grow the app each time with more and more libraries and components to test and improve my personal skils and knowledge
+
+## TODO
+- manage different game difficulties
+- imporve gui
+- implement state into game
+- refactoring game conditions and methods

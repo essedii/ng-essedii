@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['form.component.scss']
 })
 
-export class FormComponent implements OnInit, OnChanges {
+export class FormComponent{
   
   @Input() type?: number;
   @Input() iUser?: Object;
@@ -23,8 +23,9 @@ export class FormComponent implements OnInit, OnChanges {
   
   userForm: FormGroup = this.fb.group({
     gender: [null],
-    name: [null],
-    age: [null]
+    age: [null],
+    first: [null],
+    last: [null],
   });
   
   
@@ -33,20 +34,6 @@ export class FormComponent implements OnInit, OnChanges {
   started: boolean = false;
   
   constructor(  private fb: FormBuilder) { }
-
-  ngOnInit() {
-    // if (this.iUser) {
-    //   this.userForm.patchValue(this.userForm);
-    // }
-    // console.log(this.iUser);
-  }
-  
-  ngOnChanges(changes: SimpleChanges) {
-    // console.log(changes)
-    // if (changes) {
-    //    this.user = changes['iUser'];
-    // }
-  }
   
   test() {
     console.log(this.iUser)
