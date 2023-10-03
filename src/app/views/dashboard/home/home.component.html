@@ -1,17 +1,25 @@
 <div class="container">
-  <div class="title-container">
-    <h1>ANGULAR TEST WEB APP</h1>
-  </div>
-  <div class="buttons-container">
-    <div class="button-container">
-      <button mat-raised-button color="primary" class="button"  (click)="goTo('list')">
-        List
-      </button>
-    </div>
-    <div class="button-container">
-      <button mat-raised-button color="warn" class="button"  (click)="goTo('game')">
-        Game
-      </button>
+  <div class="card">
+    <div class="btn">
+      <div class="title">
+        <div class="text">
+          <h1 class="main">A N G U L A R</h1>
+        </div>
+        <div  class="text">
+          <h1  class="secondary">W E B &nbsp;  A P P</h1>
+        </div>
+    
+      </div>
+      <div class="">
+        <button mat-raised-button (click)="goTo('list')">
+          L I S T
+        </button>
+      </div>
+      <div class="">
+        <button mat-raised-button (click)="goTo('game')">
+          G A M E
+        </button>
+      </div>
     </div>
   </div>
 </div>

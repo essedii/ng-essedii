@@ -1,21 +1,67 @@
 .container {
+  background-color: black;
   display: flex;
   flex-flow: column wrap;
   gap: 2rem;
-}
+  height: 100%;
+  
+  .card {
+    width: 100%;
+    align-content: center;
+    margin: auto;
+    
+    .btn {
+      position: relative;
+      display: flex;
+      width: 100%;
+      flex-direction: inline;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      
+      .list{
+        color: white;
+      }
+      
+      .game {
+        color: white;
+      }
+      
+      .title {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left:0;
+        right: 0;
+        padding-top: 2rem;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 5rem;
+        
+        .text {
+          width: 100%;
+          display: flex;
+          flex-direction: inline;
+          justify-content: center;
+       
+        }
+        
+        .main {
+          margin: 0;
+          letter-spacing: 0.2rem;
+          color: red;
+        }
+        .secondary {
+          margin: 0;
+          color: whitesmoke;
+          letter-spacing: 0.2rem;
+        }
+      }
+    }
+   
+  }
 
-.buttons-container{
-  display: flex;
-  flex-direction: inline;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-}
-
-.title-container {
-  display: flex;
-  flex-direction: inline;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
 }
